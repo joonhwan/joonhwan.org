@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using InertiaCore;
 using Microsoft.AspNetCore.Mvc;
 using OrgWeb.Models;
 
@@ -15,7 +16,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        return Inertia.Render("Home", new { Message = "Hello World!" });
     }
 
     public IActionResult Privacy()

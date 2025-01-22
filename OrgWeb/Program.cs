@@ -1,23 +1,35 @@
+using InertiaCore.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddInertia(o =>
+{
+    o.RootView = "~/Views/App.cshtml";
+});
+builder.Services.AddViteHelper(o =>
+{
+    o.PublicDirectory = "wwwroot";
+    o.BuildDirectory = "build";
+    o.ManifestFilename = "manifest.json";
+});
 
 var app = builder.Build();
+
+app.UseInertia();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    //app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapStaticAssets();
 
 app.MapControllerRoute(
