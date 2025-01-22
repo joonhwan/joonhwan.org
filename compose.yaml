@@ -1,0 +1,6 @@
+﻿services:
+  orgweb:
+    image: orgweb
+    build:
+      context: .
+      dockerfile: OrgWeb/Dockerfile
