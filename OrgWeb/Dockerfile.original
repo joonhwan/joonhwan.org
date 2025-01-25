@@ -20,7 +20,4 @@ RUN dotnet publish "OrgWeb.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:Us
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-
-# ENTRYPOINT 대신 CMD 사용해서 `docker run -it --rm orgweb bash` 같이 별도의 명령어를 실행가능하게 함  
-# ENTRYPOINT ["dotnet", "OrgWeb.dll"]
-CMD ["dotnet", "OrgWeb.dll"]
+ENTRYPOINT ["dotnet", "OrgWeb.dll"]

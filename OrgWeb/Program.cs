@@ -30,7 +30,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
-app.MapStaticAssets();
+app.MapStaticAssets(); // --> 원래 template 에 있던 것 
 
 app.MapControllerRoute(
         name: "default",
