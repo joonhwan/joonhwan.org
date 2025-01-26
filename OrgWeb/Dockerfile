@@ -1,4 +1,12 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+﻿FROM node:23.2.0-bullseye-slim AS vite
+WORKDIR /src/OrgWebClient
+COPY ["../OrgWebClient/package.json", "../OrgWebClient/pnpm-lock.yaml", "./"]
+RUN npm install -g pnpm
+RUN pnpm install
+COPY ["../OrgWebClient/", "./"]
+RUN pnpm run build
+
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
@@ -11,6 +19,7 @@ COPY ["OrgWeb/OrgWeb.csproj", "OrgWeb/"]
 RUN dotnet restore "OrgWeb/OrgWeb.csproj"
 COPY . .
 WORKDIR "/src/OrgWeb"
+COPY --from=vite /src/OrgWeb/wwwroot ./wwwroot
 RUN dotnet build "OrgWeb.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

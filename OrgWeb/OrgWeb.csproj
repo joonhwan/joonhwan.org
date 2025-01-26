@@ -16,4 +16,8 @@
     <ItemGroup>
       <PackageReference Include="AspNetCore.InertiaCore" Version="0.0.9" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\build\" />
+    </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ import {StrictMode} from "react";
 import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
 import {InertiaProgress} from "@inertiajs/progress";
 import Layout from "./components/shared/Layout.tsx";
+import "@/site.css";
 
 const appName = "InertiaApp";
 
