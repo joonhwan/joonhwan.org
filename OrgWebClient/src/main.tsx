@@ -3,7 +3,8 @@ import {createRoot} from 'react-dom/client'
 import {StrictMode} from "react";
 import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
 import {InertiaProgress} from "@inertiajs/progress";
-import Layout from "./components/shared/Layout.tsx";
+import Layout from "@/components/shared/Layout.tsx";
+import {ThemeProvider} from "@/components/shared/ThemeProvider.tsx";
 import "@/site.css";
 
 const appName = "InertiaApp";
@@ -30,9 +31,9 @@ createInertiaApp({
         // console.log("  - props : ", props);
         root.render(
             <StrictMode>
-                {/*<ThemeProvider>*/}
-                <App {...props} />
-                {/*</ThemeProvider>*/}
+                <ThemeProvider>
+                    <App {...props} />
+                </ThemeProvider>
             </StrictMode>
         )
     },
