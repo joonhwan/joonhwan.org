@@ -26,9 +26,21 @@ jobs:
       - name: Push Docker image
         run: docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest
         
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
       - name: Deploy to VPS
         run: |
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest && docker run -d --restart always --name joonhwan,.org -p 80:80 ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest"
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest && docker run -d --restart always --name joonhwan.org -p 80:80 ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest"
+        
+#      - name: Deploy to VPS
+#        run: |
+#          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest && docker run -d --restart always --name joonhwan,.org -p 80:80 ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest"
+#        env:
+#          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+#          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
