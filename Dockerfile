@@ -1,5 +1,4 @@
-﻿LABEL org.opencontainers.image.source=https://github.com/joonhwan/joonhwan.org
-FROM node:23.2.0-bullseye-slim AS vite
+﻿FROM node:23.2.0-bullseye-slim AS vite
 WORKDIR /src/OrgWebClient
 COPY ["./OrgWebClient/package.json", "./OrgWebClient/pnpm-lock.yaml", "./"]
 RUN npm install -g pnpm
@@ -27,6 +26,7 @@ ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "OrgWeb.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
+LABEL org.opencontainers.image.source=https://github.com/joonhwan/joonhwan.org
 WORKDIR /app
 COPY --from=publish /app/publish .
 
