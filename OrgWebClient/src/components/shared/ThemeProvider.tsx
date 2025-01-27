@@ -20,7 +20,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
             return savedTheme || (prefersDark ? 'dark' : 'light')
         }
-        return 'light'
+        return 'dark'
     })
 
     useEffect(() => {
