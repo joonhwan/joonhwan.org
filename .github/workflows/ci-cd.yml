@@ -20,7 +20,7 @@ jobs:
         run: echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest .
+        run: docker build -t ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest ./OrgWeb
 
       - name: Push Docker image
         run: docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest
