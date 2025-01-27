@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy to VPS
         run: |
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest && docker run -d --restart always --name myapp -p 80:80 ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest"
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest && docker run -d --restart always --name joonhwan,.org -p 80:80 ghcr.io/${{ secrets.GHCR_USERNAME }}/joonhwan.org:latest"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}

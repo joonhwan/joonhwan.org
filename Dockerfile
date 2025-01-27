@@ -1,4 +1,5 @@
-﻿FROM node:23.2.0-bullseye-slim AS vite
+﻿LABEL org.opencontainers.image.source=https://github.com/joonhwan/joonhwan.org
+FROM node:23.2.0-bullseye-slim AS vite
 WORKDIR /src/OrgWebClient
 COPY ["./OrgWebClient/package.json", "./OrgWebClient/pnpm-lock.yaml", "./"]
 RUN npm install -g pnpm
