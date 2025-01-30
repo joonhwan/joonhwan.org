@@ -1,37 +1,42 @@
-﻿@tailwind base;
-@tailwind components;
-@tailwind utilities;
+﻿@import "tailwindcss";
+@config "../tailwind.config.js";
 
 :root {
-    --background: #faf9f8; /* Fluent UI 기본 배경색 */
-    --text: #323130; /* Fluent UI 기본 텍스트 색상 */
-    --primary: #0078d4; /* Fluent UI 주요 색상 */
-    --primary-content: #ffffff; /* Fluent UI 주요 색상 컨텐츠 색상 */
-    --secondary: #605e5c; /* Fluent UI 보조 색상 */
-    --accent: #106ebe;
+    /* Light Mode 색상 */
+    --light-back: #faf9f8; /* Fluent UI 기본 배경색 */
+    --light-fore: #323130; /* Fluent UI 기본 텍스트 색상 */
+    --light-primary: #0078d4; /* Fluent UI 주요 색상 */
+    --light-primary-content: #ffffff; /* Fluent UI 주요 색상 컨텐츠 색상 */
+    --light-secondary: #605e5c; /* Fluent UI 보조 색상 */
+    --light-accent: #106ebe;
+
+    /* Dark Mode 색상 */
+    --dark-back: #201f1f;
+    --dark-foreground: #ffffff;
+    --dark-primary: #2899f5;
+    --dark-primary-content: #dddddd;
+    --dark-secondary: #c8c6c4;
+    --dark-accent: #77b8ed;
 }
 
-html.dark {
-    --background: #201f1f;
-    --foreground: #ffffff;
-    --primary: #2899f5;
-    --primary-content: #ffffff; /* Fluent UI 주요 색상 컨텐츠 색상 */
-    --secondary: #c8c6c4;
-    --accent: #77b8ed;
+/* color scheme : 기본이 light */
+.root {
+    color-scheme: light;
+}
+.dark {
+    color-scheme: dark;
 }
 
-@layer base {
-    body {
-        @apply bg-background text-foreground;
-    }
-}
 
+@theme {
+    --color-back: light-dark(var(--light-back), var(--dark-back));
+    --color-fore: light-dark(var(--light-fore), var(--dark-foreground));
+    --color-primary: light-dark(var(--light-primary), var(--dark-primary));
+    --color-primary-content: light-dark(var(--light-primary-content), var(--dark-primary-content));
+    --color-secondary: light-dark(var(--light-secondary), var(--dark-secondary));
+    --color-accent: light-dark(var(--light-accent), var(--dark-accent));
+}
 
 html {
-    scroll-behavior: smooth;
+    @apply bg-back text-fore;
 }
-
-body {
-    min-height: 100dvh;
-}
-

@@ -13,6 +13,7 @@ export default defineConfig({
             publicDirectory: outDir,
             refresh: true,
         }),
+        // tailwindcss(),
         react()
     ],
     resolve: {
