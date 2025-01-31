@@ -19,6 +19,10 @@
     --dark-accent: #77b8ed;
 }
 
+* {
+    outline: indianred solid 1px;
+}
+
 /* color scheme : 기본이 light */
 .root {
     color-scheme: light;
