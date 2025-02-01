@@ -1,0 +1,3 @@
+[submodule "references/wren-personal-blog-example"]
+	path = references/wren-personal-blog-example
+	url = https://github.com/codewithsadee/wren.git
