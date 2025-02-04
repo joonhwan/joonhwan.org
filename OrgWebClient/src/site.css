@@ -1,4 +1,5 @@
 ﻿@import "tailwindcss";
+
 @config "../tailwind.config.js";
 
 :root {
@@ -12,26 +13,41 @@
 
     /* Dark Mode 색상 */
     --dark-back: #201f1f;
-    --dark-foreground: #ffffff;
+    --dark-fore: #ffffff;
     --dark-primary: #2899f5;
     --dark-primary-content: #dddddd;
     --dark-secondary: #c8c6c4;
     --dark-accent: #77b8ed;
 }
 
+/* -- css debug --*/
 * {
-    outline: indianred solid 1px;
+    outline: rgba(255, 200, 50, 0.1) dashed 1px;
 }
 
 /* color scheme : 기본이 light */
 .root {
     color-scheme: light;
+    --color-back-rgb: var(--light-back);
+    --color-fore-rgb: var(--light-fore);
+    --color-primary-rgb: var(--light-primary);
+    --color-primary-content-rgb: var(--light-primary-content);
+    --color-secondary-rgb: var(--light-secondary);
+    --color-accent-rgb: var(--light-accent);
 }
+
 .dark {
     color-scheme: dark;
+    --color-back-rgb: var(--dark-back);
+    --color-fore-rgb: var(--dark-fore);
+    --color-primary-rgb: var(--dark-primary);
+    --color-primary-content-rgb: var(--dark-primary-content);
+    --color-secondary-rgb: var(--dark-secondary);
+    --color-accent-rgb: var(--dark-accent);
 }
 
 
+/*noinspection CssInvalidFunction*/
 @theme {
     --color-back: light-dark(var(--light-back), var(--dark-back));
     --color-fore: light-dark(var(--light-fore), var(--dark-foreground));
@@ -43,4 +59,11 @@
 
 html {
     @apply bg-back text-fore;
+}
+
+
+.c-gradient {
+    background: var(--dark-back);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 50%);
+    opacity: 100%;
 }

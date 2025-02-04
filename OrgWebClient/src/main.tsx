@@ -6,6 +6,7 @@ import {InertiaProgress} from "@inertiajs/progress";
 import Layout from "@/components/shared/Layout.tsx";
 import {ThemeProvider} from "@/components/shared/ThemeProvider.tsx";
 import "@/site.css";
+import { IconContext } from 'react-icons';
 
 const appName = "InertiaApp";
 
@@ -32,7 +33,9 @@ createInertiaApp({
         root.render(
             <StrictMode>
                 <ThemeProvider>
-                    <App {...props} />
+                    <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
+                        <App {...props} />
+                    </IconContext.Provider>
                 </ThemeProvider>
             </StrictMode>
         )
